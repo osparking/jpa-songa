@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -21,9 +22,9 @@ public class ProductRepository {
     private int id = 1;
 
     // dataSource로 터널 뚫어보기 (=DB와 커넥션 만들기)
-//    public void makeConnection() {
-//        DataSourceUtils.getConnection(dataSource);
-//    }
+    public void makeConnection() {
+        DataSourceUtils.getConnection(dataSource);
+    }
 
     public Product findProduct(int idx) {
         return db.get(idx);

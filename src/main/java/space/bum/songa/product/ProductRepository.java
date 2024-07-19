@@ -1,6 +1,5 @@
 package space.bum.songa.product;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 
 @Repository
 public class ProductRepository {
@@ -35,10 +35,10 @@ public class ProductRepository {
     }
 
     public List<Product> findProducts() {
-        return new ArrayList<>(db.values());
-//        TypedQuery<Product> query = entityManager.createQuery("SELECT p FROM Product p", Product.class);
-//        List<Product> products = query.getResultList();
+      TypedQuery<Product> query = entityManager
+          .createQuery("SELECT p FROM Product p", Product.class);
+      List<Product> products = query.getResultList();
 
-//        return products;
+      return products;
     }
 }

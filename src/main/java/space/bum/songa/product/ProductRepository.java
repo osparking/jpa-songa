@@ -17,7 +17,7 @@ public class ProductRepository {
     EntityManager entityManager;
 
     private Map<Integer, Product> db = new HashMap<>();
-    private int id = 1;
+//    private int id = 1;
 
     // dataSource로 터널 뚫어보기 (=DB와 커넥션 만들기)
 //    public void makeConnection() {
@@ -30,8 +30,8 @@ public class ProductRepository {
 
     public void save(Product product) {
         System.out.println(product.getName());
-        db.put(id++, product);
-//        entityManager.persist(product);
+//        db.put(id++, product);
+        entityManager.persist(product);
     }
 
     public List<Product> findProducts() {

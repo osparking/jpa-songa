@@ -27,12 +27,17 @@ public class ProductController {
     }
 
     // 개별 상품 조회
-    // @RequestMapping(value = "/products/{id}", method= RequestMethod.GET)
     @GetMapping("/products/{id}")
     public Product findProduct(@PathVariable("id") int id) {
-//        ProductService productService = new ProductService();
         System.out.println(id);
-        return productService.findProduct(id);
+        Product result = null;
+        try {
+          result = productService.findProduct(id);
+        } catch (ProductNotFoundException e) { 
+          System.out.println(e.getMessage());
+        }
+          
+        return result;
     }
 
     // 상품 등록

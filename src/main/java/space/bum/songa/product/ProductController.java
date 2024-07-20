@@ -26,7 +26,11 @@ public class ProductController {
         return productService.findProducts(); // JSON array
     }
 
-    // 개별 상품 조회
+    @GetMapping("/productname/{name}")
+    public List<Product> findProductByNameLike(@PathVariable String name) {
+      return productService.findByNameContaining(name);
+    }
+    
     @GetMapping("/products/{id}")
     public Product findProduct(@PathVariable("id") int id) {
         System.out.println(id);

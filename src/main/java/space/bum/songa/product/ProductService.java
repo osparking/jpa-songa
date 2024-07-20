@@ -31,4 +31,8 @@ public class ProductService {
   public List<Product> findProducts() {
     return productRepository.findAll();
   }
+
+  public List<Product> findByNameContaining(String name) {
+    return productRepository.findByNameContaining(name);
+  }
 }

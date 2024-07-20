@@ -10,31 +10,25 @@ import jakarta.transaction.Transactional;
 @Service
 public class ProductService {
 
-    @Autowired
-//    private SpringDataJPAProductRepository springDataJPAProductRepository;
-    private ProductRepository productRepository;
+  @Autowired
+  private ProductRepository productRepository;
 
-    ProductService(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
+  ProductService(ProductRepository productRepository) {
+    this.productRepository = productRepository;
+  }
 
-//    public void makeConnection() {
-//        productRepository.makeConnection();
-//    }
+  public Product findProduct(int id) throws ProductNotFoundException {
+    String msg = "다음 아이디의 상품이 없습니다 - 아이디: " + id;
+    return productRepository.findById(id)
+        .orElseThrow(() -> new ProductNotFoundException(msg));
+  }
 
-    public Product findProduct(int id) {
-        return productRepository.findProduct(id);
-//        return springDataJPAProductRepository.findById(id).get();
-    }
+  @Transactional
+  public void saveProduct(Product product) {
+    productRepository.save(product);
+  }
 
-    @Transactional
-    public void saveProduct(Product product) {
-        productRepository.save(product);
-//        springDataJPAProductRepository.save(product);
-    }
-
-    public List<Product> findProducts() {
-        return productRepository.findProducts();
-//        return springDataJPAProductRepository.findAll();
-    }
+  public List<Product> findProducts() {
+    return productRepository.findAll();
+  }
 }

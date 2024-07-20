@@ -35,6 +35,12 @@ public class ProductController {
           result = productService.findProduct(id);
         } catch (ProductNotFoundException e) { 
           System.out.println(e.getMessage());
+          Product p = new Product();
+          p.setId(id);
+          p.setName("(이름 없음)");
+          p.setDescription("아이디가 " + id + " 인 상품은 존재하지 않습니다.");
+          
+          result = p;
         }
           
         return result;
